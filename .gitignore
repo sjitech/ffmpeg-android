@@ -1,0 +1,9 @@
+.DS_Store
+desktop.ini
+.idea
+ffmpeg_src
+*.bz2
+*.tgz
+*.so
+src/**/bin
+*test*
