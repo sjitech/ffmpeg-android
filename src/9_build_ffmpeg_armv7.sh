@@ -25,40 +25,34 @@ export  CFLAGS="$CFLAGS  -I./libvpx_src/qj_armv7/include -I./libx264_src/qj_armv
 export LDFLAGS="$LDFLAGS -B./libvpx_src/qj_armv7/lib ./otherlib/cpu-features.o -B./libx264_src/qj_armv7/lib"
 export CPPFLAGS="--sysroot=$SYS_ROOT"   #ubuntu NDK need this flag when check assembler by gcc \$CPPFLAGS \$ASFLAGS xxx.S which in turn cause "GNU assembler not found, install gas-preprocessor" due to "No include path for stdc-predef.h"
 
-./configure --arch=armv7 --cpu=armv7-a --target-os=linux --enable-cross-compile --enable-static --prefix=./qj_armv7 --disable-doc \
+./configure --arch=armv7 --cpu=armv7-a --target-os=linux --enable-cross-compile --enable-static --disable-doc \
 	--disable-ffplay --disable-ffprobe --disable-ffserver \
 	--disable-symver --disable-debug \
 	--disable-everything \
 	\
-	--enable-protocol=pipe \
-	--enable-protocol=file \
-	--enable-protocol=tcp \
+	--enable-protocol=pipe --enable-protocol=file --enable-protocol=tcp \
+	\
+	--enable-filter=scale --enable-filter=transpose \
 	\
 	--enable-demuxer=rawvideo --enable-decoder=rawvideo \
 	\
+	--enable-muxer=image2 --enable-muxer=image2pipe --enable-encoder=mjpeg --enable-encoder=png \
+	--enable-demuxer=image2 --enable-demuxer=image2pipe --enable-decoder=mjpeg --enable-decoder=png \
+	\
 	--enable-libvpx \
-	--enable-muxer=webm --enable-encoder=libvpx* \
-	--enable-demuxer=webm --enable-decoder=libvpx* \
+	--enable-muxer=webm --enable-encoder=libvpx_vp8 \
+	--enable-demuxer=matroska --enable-decoder=libvpx_vp8 \
 	\
 	--enable-libx264 --enable-gpl \
-	--enable-muxer=mp4 --enable-encoder=libx264* \
-	--enable-demuxer=mp4 --enable-decoder=libx264* \
-	\
-	--enable-filter=scale \
-	--enable-filter=transpose \
-	\
-	--enable-muxer=image2 --enable-demuxer=image2 \
-	--enable-encoder=png --enable-decoder=png \
-	--enable-encoder=mjpeg --enable-decoder=mjpeg \
-	--enable-muxer=mjpeg --enable-demuxer=mjpeg \
+	--enable-muxer=mp4 --enable-encoder=libx264 \
+	--enable-demuxer=mov --enable-decoder=h264 \
 	\
 	|| exit 1
 
 echo ---------------make ffmpeg [armv7]--------------------
 make clean
 make all || exit 1
-make install || exit 1
 
-cp -fv ./qj_armv7/bin/ffmpeg $OLD_DIR/../bin/ffmpeg.armv7 || exit 1
+cp -fv ./ffmpeg $OLD_DIR/../bin/ffmpeg || exit 1
 
 echo ""; echo ok; echo ""
