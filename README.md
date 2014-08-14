@@ -1,6 +1,6 @@
 For Android users, provide a prebuild binary file of ffmpeg 2.1.3, you can upload following file to your device and use it freely.<br>
 <pre>
-    <a href="bin/ffmpeg">bin/ffmpeg.armv7</a><br>
+    <a href="bin/ffmpeg">bin/ffmpeg</a><br>
 </pre>
 
 Supported features:<br>
@@ -20,7 +20,7 @@ Compiler Environment:<br>
 </pre>
 Then execute:<br>
 <pre>
-    cd src/ffmpeg<br>
+    cd src<br>
     ./build_all.sh<br>
 </pre>
 
