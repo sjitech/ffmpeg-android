@@ -7,16 +7,15 @@ Supported features:<br>
 <pre>
     Accepted formats: raw image, jpg, png, H264/MP4, WebM<br>
     Accepted protocols: pipe, file, tcp<br>
-    Accepted filters: resize, rotate<br>
+    Accepted filters: resize, rotate, crop<br>
     <br>
     Feel free to convert between jpg,png,web,mp4 and raw video!
 </pre>
 
 
-If you want to build it yourself, use:<br>
-Compiler Environment:<br>
+Tested Compiler Environment:<br>
 <pre>
-    Android NDK r8 or r9. Gcc 4.4.3 or 4.8.
+    Android NDK r8, r9, r10. Gcc 4.4.3, 4.7, 4.8, 4.9
 </pre>
 Then execute:<br>
 <pre>
@@ -24,9 +23,7 @@ Then execute:<br>
     ./build_all.sh<br>
 </pre>
 
-OS environment:<br>
 <pre>
     Mac OS X 10.7 64bit<br>
     Ubuntu 12 64bit<br>
-    CentOS 5 64bit<br>
 </pre>
